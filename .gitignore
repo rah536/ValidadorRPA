@@ -1,0 +1,7 @@
+# Ignorar secretos locales
+credenciales.py
+
+# Ignorar archivos generados por Robot Framework (logs y reportes)
+log.html
+report.html
+output.xml
