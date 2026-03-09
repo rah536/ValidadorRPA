@@ -1,13 +1,7 @@
 *** Settings ***
 Documentation    Conexión a la base de datos SQL Server (Estilo DAO).
 Library          DatabaseLibrary
-Variables        credenciales.py
-
-*** Test Cases ***
-Prueba de Conexion y Lectura
-    Conectar a Base de Datos
-    Obtener Conductores Pendientes
-    Desconectar de Base de Datos
+Variables        ../config/credenciales.py
 
 *** Keywords ***
 Conectar a Base de Datos
@@ -18,12 +12,7 @@ Conectar a Base de Datos
 
 Obtener Conductores Pendientes
     ${resultados}=    Query    SELECT DNI, Nombre, Apellido FROM Conductor WHERE TieneMulta IS NULL
-    
-    Log To Console    \n--- TAREAS PENDIENTES ---
-    FOR    ${fila}    IN    @{resultados}
-        Log To Console    -> Validar DNI: ${fila}[0] - ${fila}[1] ${fila}[2]
-    END
-    Log To Console    ---------------------------
+    RETURN    ${resultados}
 
 Desconectar de Base de Datos
     Disconnect From Database
